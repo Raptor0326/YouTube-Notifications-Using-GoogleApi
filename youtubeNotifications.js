@@ -21,7 +21,7 @@ module.exports = {
             
             for (const notifiactionConfig of notificationConfigs) {
                 const url = `https://www.googleapis.com/youtube/v3/search?key=${process.env.YOUTUBE_API_KEY}&channelId=${notifiactionConfig.YtChannel}&part=snippet,id&order=date&maxResults=1`;
-    const response = await axios.get(url);
+    const response = await axios.get(url, { timeout: 10000 });
     const latestVideo = response.data.items[0];
 
     const videoTitle = latestVideo.snippet.title;
